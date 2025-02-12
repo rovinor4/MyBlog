@@ -6,7 +6,10 @@
 
 
 @section('body')
-    <div class="box space-y-6">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('artikel.create') }}" class="box space-y-6">
+
+        @csrf
+        @method('POST')
 
         <div>
             <label for="judul" class="label">Judul</label>
@@ -15,23 +18,26 @@
         </div>
 
         <div>
-            <label for="input-label" class="label">Password</label>
-            <input type="password" id="input-label" class="input-control" placeholder="you@site.com">
+            <label for="input-label" class="label">Image</label>
+            <input type="file" id="input-file" name="image" class="input-file">
+            @if (isset($artikel['image']) && !empty($artikel['image']))
+                <img src="{{ $artikel['image'] ?? '' }}" alt="">
+            @endif
         </div>
 
         <div>
-            <label for="input-label" class="label">Email</label>
-            <div id="editor"></div>
-            <textarea id="articleContent" name="content" hidden></textarea>
+            <label for="input-label" class="label">Isi Artikel</label>
+            <div id="editor">{!! $artikel['isi'] ?? '' !!}</div>
+            <textarea id="articleContent" name="content" hidden>{{ $artikel['isi'] ?? '' }}</textarea>
         </div>
 
         <div class="flex justify-end">
             <button type="button"
                 class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                Solid
+                Submit
             </button>
         </div>
-    </div>
+    </form>
 
 
 

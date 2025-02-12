@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
+
     public function LoginPage()
     {
         return view('Pages.login');
@@ -20,8 +22,22 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($data)) {
-            return "Berhasil Login";
+            request()->session()->regenerate();
+
+            //pembedaan role
+            $user = Auth::user();
+
+            // diarahkan ke dashboard admin
+            if ($user->role == 'admin') {
+                return redirect()->route('artikel.index');
+            }
+
+            // diarahkan ke halaman utama
+            return redirect()->route('home');
         }
-        return "Gagal Login";
+
+        return redirect()->back()->withErrors([
+            "username" => "Username atau password salah"
+        ]);
     }
 }

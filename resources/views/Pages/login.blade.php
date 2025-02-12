@@ -38,7 +38,7 @@
                                     <div>
                                         <div class="form-group">
                                             <div class="form-label-group">
-                                                <label class="form-label" for="username">Email or Username</label>
+                                                <lab el class="form-label" for="username">Email or Username</lab>
                                             </div>
                                             <div class="form-control-wrap">
                                                 <input type="text" class="form-control form-control-lg" id="username"

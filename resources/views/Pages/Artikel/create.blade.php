@@ -6,7 +6,7 @@
 
 
 @section('body')
-    <form method="POST" enctype="multipart/form-data" action="{{ route('artikel.create') }}" class="box space-y-6">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('artikel.store') }}" class="box space-y-6">
 
         @csrf
         @method('POST')
